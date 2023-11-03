@@ -32,6 +32,16 @@ CREATE TABLE IF NOT EXISTS `score`
     CONSTRAINT `FK_score_game` FOREIGN KEY (`score_game_id`) REFERENCES `game`(`game_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `note`
+(
+    `note_id` INT PRIMARY KEY NOT NULL auto_increment ,
+    `note_user_id` INT NOT NULL ,
+    `note_game_id` INT NOT NULL ,
+    `note_note` INT NOT NULL ,
+    CONSTRAINT `FK_note_user` FOREIGN KEY (`note_user_id`) REFERENCES `utilisateur`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_note_game` FOREIGN KEY (`note_game_id`) REFERENCES `game`(`game_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS `temp`
 (
     `temp_id` INT PRIMARY KEY NOT NULL auto_increment ,
