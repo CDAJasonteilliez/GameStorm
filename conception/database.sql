@@ -48,6 +48,6 @@ CREATE TABLE IF NOT EXISTS `temp`
     `temp_user_id` INT NOT NULL ,
     `temp_lien` VARCHAR(100) NOT NULL ,
     `temp_pass` VARCHAR(60) NOT NULL ,
-    `temp_date` TIMESTAMP
+    `temp_date` TIMESTAMP,
     CONSTRAINT `FK_temp_user` FOREIGN KEY (`temp_user_id`) REFERENCES `utilisateur`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
