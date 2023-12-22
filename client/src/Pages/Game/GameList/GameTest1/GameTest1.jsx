@@ -9,12 +9,10 @@ const GameTest1 = () => {
 
     useEffect(()=> {
         runGame();
-        console.log('ok')
     },[]);
 
     useEffect(()=> {
         resize();
-        console.log("ok");
     },[size]);
 
     return (

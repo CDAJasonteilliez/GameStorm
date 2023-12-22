@@ -1,5 +1,5 @@
 .game {
-    background: yellow;
+    padding:5px;
 }
 
 .gameContainer {
@@ -7,4 +7,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .canvasContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top: solid 5px rgba(200, 200, 200);
+        border-left: solid 5px rgba(160, 160, 160);
+        border-right: solid 5px rgba(160, 160, 160);
+        border-bottom: solid 5px rgba(110, 110, 110);
+        background-color: rgba(160, 160, 160);
+    }
 }
+

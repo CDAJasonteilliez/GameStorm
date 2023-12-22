@@ -1,12 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from './App';
-import Home from "./Pages/Home/Home";
-import Game from "./Pages/Game/Game";
+import { lazy } from "react";
+import Layout from './Components/Layout/Layout';
+import Connexion from "./Pages/Connexion/Connexion.jsx";
+
+const Home = lazy(() => import('./Pages/Home/Home.jsx'));
+const Game = lazy(() => import('./Pages/Game/Game.jsx'));
+// const Connexion = lazy(() => import('./Pages/Connexion/Connexion.jsx'));
+const Inscription = lazy(() => import('./Pages/Inscription/Inscription.jsx'));
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <Layout />,
         children: [
             {
                 path:'/',
@@ -15,6 +20,14 @@ const router = createBrowserRouter([
             {
                 path:'/game/:gameName',
                 element: <Game />
+            },
+            {
+                path:'/connexion',
+                element: <Connexion />
+            },
+            {
+                path:'/inscription',
+                element: <Inscription />
             }
         ]
     }

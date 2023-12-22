@@ -8,16 +8,20 @@ const Game = () => {
     const Canvas = lazy(() => import(`./GameList/${params.gameName}/${params.gameName}.jsx`));
 
     return (
-        <div className={`${styles.game}`}>
+        <>
             <h2>aaa</h2>
-            <a href="#canvasGame" > game</a>
-            <div className={`${styles.gameContainer}`} id="gameContainer">
-                <Suspense >
-                    <Canvas />
-                </Suspense>
+            <a href="#canvasContainer" > game</a>
+            <div>
+                <div className={`${styles.gameContainer}`} id="gameContainer">
+                    <div className={`${styles.canvasContainer}`} id="canvasContainer">
+                        <Suspense >
+                            <Canvas />
+                        </Suspense>
+                    </div>
+                </div>
             </div>
             <p>blablabal</p>
-        </div>
+        </>
     )
 };
 

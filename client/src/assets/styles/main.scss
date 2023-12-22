@@ -3,3 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --insideBg: rgb(30, 30, 30);
+    --whiteBorder: rgb(240, 240, 240);
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

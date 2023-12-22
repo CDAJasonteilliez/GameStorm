@@ -1,15 +1,14 @@
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import UserHeader from './Components/UserHeader/UserHeader';
+import Navigation from './Components/Navigation/Navigation';
+import Logo from './Components/Logo/Logo';
 
 const Header = () => {
     return (
         <header className={`${styles.header}`}>
-            <nav>
-                <ul>
-                    <li><Link to="/"> Home</Link></li>
-                    <li>bbb</li>
-                </ul>
-            </nav>
+            {/* <UserHeader /> */}
+            <Logo />
+            <Navigation />
         </header>
     )
 }

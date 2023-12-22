@@ -1,3 +1,10 @@
 .header {
-    background: blue;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: Orbitron, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px 0px 5px;
+    background: linear-gradient(rgb(80, 80, 80), rgb(124, 124, 124));
 }

@@ -1,0 +1,28 @@
+.main {
+    width: 100%;
+    flex: 1;
+    background: rgb(124, 124, 124);
+    padding: 5px;
+    display: flex;
+
+    .mainOutside {
+        border: solid 1px var(--whiteBorder);
+        width: 100%;
+        flex: 1;
+        background: rgb(155, 155, 155);
+
+        .mainInside {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-top: solid 10px rgba(67, 67, 67, 0.5);
+            border-left: solid 8px rgba(100, 100, 100, 0.5);
+            border-right: solid 8px rgba(100, 100, 100, 0.5);
+            border-bottom: solid 6px rgba(145, 145, 145, 0.5);
+            background: var(--insideBg);
+        }
+    }
+
+
+}
+
