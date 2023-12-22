@@ -2,13 +2,26 @@
     position: absolute;
     top: 0;
     width: 100%;
-    padding: 10px;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
 
     &.succes {
-        background: rgb(0, 255, 21);
+        background: rgb(65, 255, 65);
+        color:rgb(0, 90, 0);
     }
     &.error {
         background:red;
+    }
+    .svg{
+        display: flex;
+        align-items: center;
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
     }
 }
 
