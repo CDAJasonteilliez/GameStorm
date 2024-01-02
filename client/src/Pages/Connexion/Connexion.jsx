@@ -7,6 +7,7 @@ import { AuthContext } from "../../Context/AuthContext.jsx";
 import usePersist from "../../hooks/usePersist.js";
 import { Link } from "react-router-dom";
 import { connexion } from "../../api/auth.js";
+import { FlashContext } from "../../Context/FlashContext.jsx";
 
 import styles from "./Connexion.module.scss"
 
@@ -15,6 +16,7 @@ const Connexion = () => {
     const [error, setError] = useState(null);
     const [persist, setPersist] = usePersist();
     const { userData, setUserData } = useContext(AuthContext);
+    const { setFlashMessage, setTimer } = useContext(FlashContext);
     const navigate = useNavigate();
 
     const defaultValues = {
@@ -41,7 +43,17 @@ const Connexion = () => {
         try {
             const response = await connexion(values);
             if (response.succes) {
-                console.log("ok")
+                setUserData(response.data)
+                setFlashMessage({
+                    message:"Connexion réussie !",
+                    type: "succes"
+                });
+                setTimer(clearTimeout)
+                setTimer(
+                    setTimeout(() => {setFlashMessage(null);},5000)
+                )
+                navigate("/");
+                return;
             }
             if (response.error) {
                 setError(response.error);

@@ -6,9 +6,9 @@ import { useNavigate, Navigate, Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext.jsx";
 import usePersist from "../../hooks/usePersist.js";
 import { inscription } from "../../api/user.js";
+import { FlashContext } from "../../Context/FlashContext.jsx";
 
 import styles from "./Inscription.module.scss"
-import { FlashContext } from "../../Context/FlashContext.jsx";
 
 const Inscription = () => {
     const [error, setError] = useState(null);
@@ -66,9 +66,10 @@ const Inscription = () => {
                 });
                 setTimer(clearTimeout)
                 setTimer(
-                    setTimeout(() => {setFlashMessage(null);},100000)
+                    setTimeout(() => {setFlashMessage(null);},5000)
                 )
                 navigate("/connexion");
+                return;
             }
             if (response.error) {
                 setError(response.error);

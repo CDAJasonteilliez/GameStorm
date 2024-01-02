@@ -74,7 +74,7 @@ export const login = async (req, res) => {
                 maxAge: 32 * 24 * 60 * 60 * 1000,
             });
 
-            res.json({
+            res.status(200).json({
                 succes: "200 - Login",
                 message: "Login successful",
                 UserInfo: {
@@ -93,4 +93,29 @@ export const login = async (req, res) => {
             message: "An unexpected error occurred"
         })
     }
+}
+
+// @desc Logout
+// @route Post /auth/Logout
+// access Public
+export const logout = async (req, res) => {
+    const cookies = req. cookies;
+
+    if (!cookies.jwt) {
+        return res.status(204).json({
+            succes: "204 - No content",
+            message: "Logout successful",
+        })
+    }
+
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        secure: false,
+        sameSite: "None",
+    });
+    
+    res.status(200).json({
+        succes: "200 - Logout",
+        message: "Logout successful",
+    });
 }
