@@ -43,7 +43,7 @@ const Navigation = () => {
   return (
     <nav className={`${styles.navigation}`}>
         <ul>
-            { userData && userData.role === "admin" ? (
+            { userData && userData.role === "administrateur" ? (
               <>
                 <NavLien text="Accueil" lien="/" classe=""/>
                 <NavLien text="DashBoard" lien="/administration" classe=""/>
@@ -62,7 +62,6 @@ const Navigation = () => {
             { userData && userData.role === "utilisateur" ? (
               <>
                 <NavLien text="Accueil" lien="/" classe=""/>
-                <NavLien text="Classement" lien="/classement" classe=""/>
                 <NavLien text="Profile" lien="/profile" classe=""/>
                 <span></span>
                 <li className={`${styles.li}`}>
@@ -78,7 +77,6 @@ const Navigation = () => {
             { userData === null ? (
               <>
                 <NavLien text="Accueil" lien="/" classe=""/>
-                <NavLien text="Classement" lien="/classement" classe=""/>
                 <span></span>
                 <NavLien text="Connexion" lien="/connexion" classe=""/>
                 <NavLien text="Inscription" lien="/inscription" classe=""/>

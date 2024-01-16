@@ -2,8 +2,10 @@ import axios from "axios";
 
 export const connexion = async (values) => {
     try {
-        const response = await axios.post("http://localhost:3000/auth", values);
-        if (response.status === 200) {
+        const response = await axios.post("http://localhost:3000/auth", values,{
+            withCredentials: true,
+        });
+        if (response?.status === 200) {
             return {
                 succes: "Connexion réussite",
                 data: response.data.UserInfo
@@ -29,14 +31,35 @@ export const connexion = async (values) => {
 
 export const deconnexion = async () => {
     try {
-        const response = await axios.post("http://localhost:3000/auth/logout", {
+        const response = await axios.get("http://localhost:3000/auth/logout", {
             withCredentials: true,
         });
-        if (response.status === 200 || response.status === 204) {
+        if (response?.status === 200 || response?.status === 204) {
             return {succes: "Déconnexion réussite"}
         }
         throw new Error("Erreur deconnexion");
     } catch (err) {
+        return {error: ["Une erreur est survenue, veuillez réessayer ulterieurement."]}
+    }
+}
+
+export const refresh = async () => {
+    try {
+        const response = await axios.get("http://localhost:3000/auth/refresh", {
+            withCredentials: true,
+        });
+
+        if (response?.status === 200) {
+            return {
+                succes: "Refresh réussi",
+                data: response.data.UserInfo
+            }
+          }
+          throw new Error("Erreur refresh");
+    } catch (err) {
+        if (err.response?.status === 401) {
+            return { error: ["Echec de vérification de connexion"]};
+        }
         return {error: ["Une erreur est survenue, veuillez réessayer ulterieurement."]}
     }
 }

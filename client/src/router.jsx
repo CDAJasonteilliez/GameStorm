@@ -13,11 +13,18 @@ const ForgottenPassword = lazy(() => import('./Pages/ForgottenPassword/Forgotten
 const Legal = lazy(() => import('./Pages/Legal/Legal.jsx'));
 const PDC = lazy(() => import('./Pages/PDC/PDC.jsx'));
 const Profil = lazy(() => import('./Pages/Profil/Profil.jsx'));
-const Ranking = lazy(() => import('./Pages/Ranking/Ranking.jsx'));
-const Rankings = lazy(() => import('./Pages/Rankings/Rankings.jsx'));
 const RecupPassword = lazy(() => import('./Pages/RecupPassword/RecupPassword.jsx'));
 const ValidEmail = lazy(() => import('./Pages/ValidEmail/ValidEmail.jsx'));
+
+const CanvasGame = lazy(() => import("./Pages/Game/Components/CanvasGame/CanvasGame.jsx"));
+const Leaderboard = lazy(() => import("./Pages/Game/Components/Leaderboard/Leaderboard.jsx"));
+
 const Dashboard = lazy(() => import('./Pages/Dashboard/Dashboard.jsx'));
+const Jeux = lazy(() => import('./Pages/Dashboard/Components/Jeux/Jeux.jsx'));
+const ListeJeux = lazy(() => import('./Pages/Dashboard/Components/Jeux/Components/ListeJeux/ListeJeux.jsx'));
+const AddJeu = lazy(() => import('./Pages/Dashboard/Components/Jeux/Components/AddJeu/AddJeu.jsx'));
+const Scores = lazy(() => import('./Pages/Dashboard/Components/Scores/Scores.jsx'));
+const Utilisateurs = lazy(() => import('./Pages/Dashboard/Components/Utilisateurs/Utilisateurs.jsx'));
 
 const router = createBrowserRouter([
     {
@@ -29,8 +36,18 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path:'/game/:gameName',
-                element: <Game />
+                path:'/game/:link',
+                element: <Game />,
+                children: [
+                    {
+                        path:'',
+                        element: <CanvasGame />
+                    },
+                    {
+                        path:'leaderboard',
+                        element: <Leaderboard />
+                    }
+                ]
             },
             {
                 path:'/connexion',
@@ -41,7 +58,7 @@ const router = createBrowserRouter([
                 element: <Inscription />
             },
             {
-                path: '/about',
+                path: '/a-propos',
                 element: <About />
             },
             {
@@ -69,14 +86,6 @@ const router = createBrowserRouter([
                 element: <Profil />
             }, 
             {
-                path: '/classement/:gameName',
-                element: <Ranking />
-            },
-            {
-                path: '/classement',
-                element: <Rankings />
-            },
-            {
                 path: '/recuperation',
                 element: <RecupPassword />
             },
@@ -86,7 +95,32 @@ const router = createBrowserRouter([
             },
             {
                 path: '/administration',
-                element: <Dashboard />
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: 'utilisateurs',
+                        element: <Utilisateurs />
+                    },
+                    {
+                        path: 'jeux',
+                        element: <Jeux />,
+                        children: [
+                            {
+                                path: '',
+                                element: <ListeJeux />
+                            },
+                            {
+                                path: 'ajouter',
+                                element: <AddJeu />
+                            }
+                        ]
+                    },
+                    {
+                        path: 'scores',
+                        element: <Scores />
+                    },
+                ]
+
             }
         ]
     }

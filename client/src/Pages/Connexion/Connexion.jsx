@@ -120,7 +120,7 @@ const Connexion = () => {
 
             </form>
             <div className={`${styles.forgottenPassword}`}>
-                <Link to='/forgotten-password'>Mot de passe oublié ?</Link>
+                <Link to='/mot-de-passe-oublie'>Mot de passe oublié ?</Link>
             </div>
             <div  className={`${styles.redirection}`}>
                 <p>Vous n'avez pas de compte ?</p>
