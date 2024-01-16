@@ -22,6 +22,13 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use(routes);
 
+app.all("*", (req,res) => {
+    res.status(404).json({
+        error: "404 - not found", 
+        message: "Nous ne trouvons pas votre requête"
+    });
+});
+
 // Listen
 app.listen(PORT, () => {
     console.log(`Server runnig at http://localhost:${PORT}`);

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 import Layout from './Components/Layout/Layout';
+import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 
 const Home = lazy(() => import('./Pages/Home/Home.jsx'));
 const Game = lazy(() => import('./Pages/Game/Game.jsx'));
 const Connexion = lazy(() => import('./Pages/Connexion/Connexion.jsx'));
 const Inscription = lazy(() => import('./Pages/Inscription/Inscription.jsx'));
-const About = lazy(() => import('./Pages/About/About.jsx'));
 const CGU = lazy(() => import('./Pages/CGU/CGU.jsx'));
 const Contact = lazy(() => import('./Pages/Contact/Contact.jsx'));
 const ForgottenPassword = lazy(() => import('./Pages/ForgottenPassword/ForgottenPassword.jsx'));
@@ -30,10 +30,11 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path:'/',
-                element: <Home />
+                element: <Home />,
             },
             {
                 path:'/game/:link',
@@ -58,10 +59,6 @@ const router = createBrowserRouter([
                 element: <Inscription />
             },
             {
-                path: '/a-propos',
-                element: <About />
-            },
-            {
                 path: '/condition-generale-d-utilisation',
                 element: <CGU />
             },
@@ -74,7 +71,7 @@ const router = createBrowserRouter([
                 element: <ForgottenPassword />
             },
             {
-                path: '/mention-legal',
+                path: '/mention-legale',
                 element: <Legal />
             },
             { 
@@ -120,7 +117,6 @@ const router = createBrowserRouter([
                         element: <Scores />
                     },
                 ]
-
             }
         ]
     }
