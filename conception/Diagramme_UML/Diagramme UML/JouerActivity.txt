@@ -1,0 +1,41 @@
+@startuml
+
+skin rose
+
+title GameStrom - Jouer : Activity Diagram
+
+|Utilisateur|
+start
+:Accès au site web;
+|Système|
+:Retourne liste des jeux;
+|Utilisateur|
+while (Utilisation fonction recherche) is (yes)
+  :Entrer recherche;
+  |Système|
+  :Retroune liste de jeu correspondant;
+endwhile
+|Utilisateur|
+:Selectionner un jeux;
+|Système|
+:Retourne page jeu;
+|Utilisateur|
+:Jouer;
+:Fin d'une partie;
+|Système|
+if (Est connecté ?) is (yes) then
+  :Mémorisation du score actuelle;
+  :Vérification présence d'un score dans la base de données;
+  if (Score présent ?) is (yes) then
+    :Récupération du score;
+    :Comparer score actuelle et score BDD;
+    if (Nouveau record ?) is (yes) then
+    : Enregistrer score dans la BDD;
+    endif
+  else (no)
+    :Enregistrer score dans la BDD;
+  endif
+  else (no)
+endif
+stop
+@enduml

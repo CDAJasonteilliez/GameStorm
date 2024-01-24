@@ -314,17 +314,6 @@ export const getUsersAdmin = async (req,res) => {
     })
 } 
 
-// @desc modify user (admin access)
-// @route Put /users/admin
-// access Private
-export const modifyUserAdmin = async (req,res) => {
-    console.log("modify user admin");
-    return res.status(500).json({
-        error: "500 - Server error", 
-        message: "TODO : modifyUserAdmin"
-    })
-}
-
 // @desc delete user (admin access)
 // @route delete /users/admin
 // access Private

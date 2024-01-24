@@ -1,0 +1,37 @@
+@startuml
+
+title GameStorm : Use Case Diagram
+
+rectangle Application {
+  (Inscription)
+  (Connexion)
+  (MDP oubliée) as FP
+  (Parcourir jeux et scores) as Browse
+  (Jouer)
+  (Voir Profil) as VP
+  (Gestion Profil) as GP
+  (Acces dashboard) as AD
+  (Gestion jeux) as GJ
+  (gestion scores) as GS
+  (gestion utilisateur) as GU
+}
+
+:Visiteur:
+:Utilisateur:
+:Administrateur:
+
+Visiteur <|-right- Utilisateur
+Utilisateur <|-right- Administrateur
+
+Visiteur --> Browse
+Visiteur --> Inscription
+Visiteur --> Connexion
+Connexion <.. FP : <<extend>>
+Visiteur --> Jouer
+Utilisateur --> VP
+VP <.. GP : <<extend>>
+Administrateur --> AD
+AD <.. GJ : <<extend>>
+AD <.. GS : <<extend>>
+AD <.. GU : <<extend>>
+@enduml

@@ -7,7 +7,6 @@ import {
     getUsersAdmin, 
     modifyPasswordUser, 
     modifyUser, 
-    modifyUserAdmin,
 } from "../../controllers/userControllers.js";
 import verifyJWT from "../../middleware/verifyJWT.js";
 import verifyAmin from "../../middleware/verifyAdmin.js";
@@ -23,9 +22,8 @@ router.route('/')
 router.route('/password')
     .put(verifyJWT,modifyPasswordUser);
 
-router.route('/user')
+router.route('/admin')
     .get(verifyJWT, verifyAmin, getUsersAdmin)
-    .put(verifyJWT, verifyAmin, modifyUserAdmin)
     .delete(verifyJWT, verifyAmin, deleteUsersAdmin);
 
 export default router;

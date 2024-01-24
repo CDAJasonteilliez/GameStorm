@@ -3,51 +3,51 @@ USE `gamestorm`;
 
 CREATE TABLE IF NOT EXISTS `utilisateur`
 (
-    `user_id` INT PRIMARY KEY NOT NULL auto_increment ,
-    `user_name` VARCHAR(20) NOT NULL UNIQUE ,
-    `user_mail` VARCHAR(100) NOT NULL UNIQUE ,
-    `user_password` VARCHAR(60) NOT NULL ,
-    `user_avatar` VARCHAR(120) NULL ,
-    `user_kind` INT NOT NULL DEFAULT '2' ,
-    `user_date_inscription` TIMESTAMP
+    `id` INT PRIMARY KEY NOT NULL auto_increment ,
+    `name` VARCHAR(255) NOT NULL UNIQUE ,
+    `email` VARCHAR(255) NOT NULL UNIQUE ,
+    `password` VARCHAR(255) NOT NULL ,
+    `avatar` VARCHAR(255) NULL ,
+    `verify` TINYINT(1) NOT NULL ,
+    `active` TINYINT(1) NOT NULL ,
+    `role` VARCHAR(255) NOT NULL ,
+    `createdAt` TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS `game`
 (
-    `game_id` INT PRIMARY KEY NOT NULL auto_increment ,
-    `game_name` VARCHAR(20) NOT NULL UNIQUE ,
-    `game_description` TEXT NOT NULL ,
-    `game_miniature` VARCHAR(100) NOT NULL ,
-    `game_lien` VARCHAR(100) NOT NULL UNIQUE
+    `id` INT PRIMARY KEY NOT NULL auto_increment ,
+    `name` VARCHAR(255) NOT NULL UNIQUE ,
+    `link` VARCHAR(255) NOT NULL UNIQUE ,
+    `miniature` VARCHAR(255) NOT NULL ,
+    `description` TEXT NOT NULL ,
+    `active` TINYINT(1) NOT NULL ,
+    `addedAt` TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS `score`
 (
-    `score_id` INT PRIMARY KEY NOT NULL auto_increment ,
-    `score_user_id` INT NOT NULL ,
-    `score_game_id` INT NOT NULL ,
-    `score_score` INT NOT NULL ,
-    `score_date` VARCHAR(20) NOT NULL ,
-    CONSTRAINT `FK_score_user` FOREIGN KEY (`score_user_id`) REFERENCES `utilisateur`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT `FK_score_game` FOREIGN KEY (`score_game_id`) REFERENCES `game`(`game_id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS `note`
-(
-    `note_id` INT PRIMARY KEY NOT NULL auto_increment ,
-    `note_user_id` INT NOT NULL ,
-    `note_game_id` INT NOT NULL ,
-    `note_note` INT NOT NULL ,
-    CONSTRAINT `FK_note_user` FOREIGN KEY (`note_user_id`) REFERENCES `utilisateur`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT `FK_note_game` FOREIGN KEY (`note_game_id`) REFERENCES `game`(`game_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    `id` INT PRIMARY KEY NOT NULL auto_increment ,
+    `score` INT NOT NULL ,
+    `date` TIMESTAMP ,
+    `utilisateur_id` INT NOT NULL ,
+    `game_id` INT NOT NULL ,
+    CONSTRAINT `FK_score_user` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_score_game` FOREIGN KEY (`game_id`) REFERENCES `game`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `temp`
 (
-    `temp_id` INT PRIMARY KEY NOT NULL auto_increment ,
-    `temp_user_id` INT NOT NULL ,
-    `temp_lien` VARCHAR(100) NOT NULL ,
-    `temp_pass` VARCHAR(60) NOT NULL ,
-    `temp_date` TIMESTAMP,
-    CONSTRAINT `FK_temp_user` FOREIGN KEY (`temp_user_id`) REFERENCES `utilisateur`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    `id` INT PRIMARY KEY NOT NULL auto_increment ,
+    `type` VARCHAR(255) NOT NULL ,
+    `link` VARCHAR(255) NOT NULL ,
+    `pass` VARCHAR(255) NOT NULL ,
+    `createdAt` TIMESTAMP ,
+    `expiderAt` TIMESTAMP ,
+    `utilisateur_id` INT NOT NULL ,
+    CONSTRAINT `FK_temp_user` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+
+
